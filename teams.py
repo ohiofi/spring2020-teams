@@ -108,6 +108,18 @@ def specialRooms(location,quizCompleted, bossDead):
         robotQuizGame()
     if location == 805 and bossDead == False:
         robotFightGame()
+
+def trueOrFalseKey(location, inventoryArray):
+  if "Gold Key" in inventoryArray:
+    print("congrats! you got in!")
+    roomArray[608] = "You have walked into the room"
+  else:
+    print("you don't have the key. go back and look for it.")   
+def lockedRoom(location,inventoryArray):
+  if location == 508 :
+    trueOrFalseKey(location, inventoryArray)
+    "you've entered the locked room!"
+
 def main():
     quizCompleted = False
     bossDead = False
@@ -131,11 +143,12 @@ def main():
     itemArray[304] = "Bidet"
     itemArray[306] = "Wrench"
     itemArray[307] = "Robot Arm"
-    itemArray[209] = "Gold Key"
+    itemArray[804] = "Gold Key"
 
     while True:
         map.draw(roomArray, itemArray, location)
         print(roomArray[location])
+        lockedRoom(location, inventoryArray)
         specialRooms(location,quizCompleted, bossDead)
         if itemArray[location] != False:
             print("items in room: " + itemArray[location])
@@ -150,13 +163,3 @@ def main():
             break
         
         location = move(userInput, location)
-def trueOrFalseKey():
-  if key in inventory[]:
-    print("congrats! you got in!")
-    location=location+1
-    else:
-    print("you don't have the key. go back and look for it.")   
-def lockedRoom():
-  if location == 608 :
-    trueOrFalseKey()
-    "you've entered the locked room!"
